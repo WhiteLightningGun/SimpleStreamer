@@ -1,0 +1,58 @@
+@page
+@model NewAudioFileModel
+@{
+    ViewData["Title"] = "Upload page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Upload New Files</h1>
+    <p>Upload music files here.</p>
+</div>
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data" id="upload-form">
+        <div class="form-group">
+            <label for="artist">Artist</label>
+            <input type="text" class="form-control" id="artist" name="Artist" asp-for="Artist" required>
+            <span asp-validation-for="Artist" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="album">Album</label>
+            <input type="text" class="form-control" id="album" name="Album" asp-for="Album" required>
+            <span asp-validation-for="Album" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="mp3Files">Upload MP3 Files</label>
+            <input type="file" class="form-control-file" id="mp3Files" name="mp3Files" accept=".mp3" multiple asp-for="Mp3Files" required>
+            <span asp-validation-for="Mp3Files" class="text-danger"></span>
+        </div>
+        <br>
+        <div id="drop-zone" style="border: 2px dashed #ccc; padding: 10px;">Drag and drop files here</div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        var dropZone = document.getElementById('drop-zone');
+        var fileInput = document.getElementById('mp3Files');
+
+        dropZone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.backgroundColor = '#ccc';
+        });
+
+        dropZone.addEventListener('dragleave', function(e) {
+            this.style.backgroundColor = 'transparent';
+        });
+
+        dropZone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.backgroundColor = 'transparent';
+            fileInput.files = e.dataTransfer.files;
+        });
+        $("upload-form").validate();
+    </script>
+}

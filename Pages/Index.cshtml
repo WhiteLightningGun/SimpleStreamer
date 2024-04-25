@@ -1,0 +1,57 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Music Streamer</h1>
+</div>
+
+<div class="container">
+    <div id="title" class="text-center">
+        <span><p id="artist"><u>Artist</u>: Hotline Miami</p></span>
+        <p id="album"><u>Album</u>: Cyber Stalker</p>
+        <p id="song"><u>Song</u>: KILL!</p>
+    </div>
+    <div id="controls" class="text-center">
+        <audio controls id="audioelement">
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+        </audio>
+
+    </div>
+    <div class="row my-3">
+        <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="autoplay-switch">
+        <label class="custom-control-label" for="autoplay-switch">Autoplay</label>
+    </div>
+    <div class="row my-3">
+        <div class="col-4">
+            <input type="text" class="form-control" id="artist-filter" placeholder="Artist" onchange="ArtistFilter()">
+            <label for="artist-filter">Artist</label>
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" id="album-filter" placeholder="Album" onchange="ArtistFilter()">
+            <label for="album-filter">Album</label>
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" id="song-filter" placeholder="Song" onchange="ArtistFilter()">
+            <label for="song-filter">Song</label>
+        </div>
+
+    </div>
+
+    <div>
+        <table id="song-table" class="table">
+            <tr><thead><th scope="col">Artist</th><th scope="col">Album</th><th scope="col">Song</th></thead></tr>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/musicplayer.js"></script>
+}
